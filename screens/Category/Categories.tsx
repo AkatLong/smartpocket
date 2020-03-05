@@ -24,7 +24,7 @@ type Props = ConnectedProps<typeof connector>
 const Categories: React.FunctionComponent<Props> = (props) => {
   return (
     <ScrollView>
-      {props.categories.map((obj=>(<Text key={obj.id} onPress={()=>{props.navigation.navigate('CategoryDetails',{categoryId:obj.id})}}>{obj.id}</Text>)))}
+      {props.categories.map((c=>(<Text key={c.id} onPress={()=>{props.navigation.navigate('CategoryDetails',{category:c})}}>{c.id}</Text>)))}
       <Text onPress={()=>{props.addCategory('test')}}>Categories</Text>
     </ScrollView>
   );

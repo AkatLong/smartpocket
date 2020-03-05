@@ -1,1 +1,7 @@
-export const ADD_CATEGORY = 'ADD_CATEGORY'
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
+
+export const ADD_PURCHASE = 'ADD_PURCHASE';
+export const EDIT_PURCHASE = 'EDIT_PURCHASE';
+export const REMOVE_PURCHASE = 'REMOVE_PURCHASE';

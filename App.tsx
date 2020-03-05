@@ -8,11 +8,15 @@ import Home from './screens/Home/Home';
 import CategoryDetails from './screens/Category/CategoryDetails';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import { store, persistor } from './store/store';
+import {store, persistor} from './store/store';
+import Purchases from './screens/Purchase/Purchases';
+import PurchaseDetails from './screens/Purchase/PurchaseDetails';
 
 const DrawerNavigator = createDrawerNavigator();
 
 const CategoryStack = createStackNavigator();
+
+const PurchaseStack = createStackNavigator();
 
 const HomeStack: React.FunctionComponent = () => (
   <CategoryStack.Navigator>
@@ -37,6 +41,19 @@ const CatStack: React.FunctionComponent = () => (
   </CategoryStack.Navigator>
 );
 
+const PurStack: React.FunctionComponent = () => (
+  <PurchaseStack.Navigator>
+    <PurchaseStack.Screen
+      name="Purchases"
+      options={{
+        title: 'Покупки',
+      }}
+      component={Purchases}
+    />
+    <PurchaseStack.Screen name="PurchaseDetails" component={PurchaseDetails} />
+  </PurchaseStack.Navigator>
+);
+
 const App: React.FunctionComponent = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
@@ -48,6 +65,7 @@ const App: React.FunctionComponent = () => (
             options={{}}
           />
           <DrawerNavigator.Screen name={'Categories'} component={CatStack} />
+          <DrawerNavigator.Screen name={'Purchases'} component={PurStack} />
         </DrawerNavigator.Navigator>
       </NavigationContainer>
     </PersistGate>
