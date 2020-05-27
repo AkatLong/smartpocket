@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Button} from 'react-native';
 import {selectAllPurchases} from '../../store/selectors';
-import {RootState, Purchase} from '../../store/types';
+import {RootState} from '../../store/types';
 import {connect, ConnectedProps} from 'react-redux';
 import {removePurchase, editPurchase} from '../../store/actions/purchases';
+import { Screen, Label } from '../../components/ConnectedComponents';
 
 const mapStateToProps = (state: RootState) => ({
   purchases: selectAllPurchases(state.purchasesReducer),
@@ -22,10 +23,10 @@ const PurchaseDetails: React.FunctionComponent<Props> = props => {
   const {purchase} = props.route.params;
 
   return (
-    <View>
-      <Text>{purchase.id}</Text>
-      <Text>{purchase.sum}</Text>
-      <Text>{purchase.timestamp}</Text>
+    <Screen>
+      <Label>{purchase.id}</Label>
+      <Label>{purchase.sum}</Label>
+      <Label>{purchase.timestamp}</Label>
       <Button
         title="Удалить"
         onPress={() => {
@@ -33,8 +34,8 @@ const PurchaseDetails: React.FunctionComponent<Props> = props => {
           props.navigation.navigate('Purchases');
         }}
       />
-    </View>
+    </Screen>
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PurchaseDetails);
+export default connector(PurchaseDetails);

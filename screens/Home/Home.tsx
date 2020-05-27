@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Screen, Label } from '../../components/ConnectedComponents';
 
 interface Props {
   
 }
 
 const Home: React.FunctionComponent<Props> = (props) => {
-  return <View><Text>Home</Text></View>;
+  return <Screen><Label>Home</Label></Screen>;
 };
 
 export default Home;

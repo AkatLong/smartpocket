@@ -1,16 +1,20 @@
 import * as React from 'react';
 import {
   View,
-  TouchableWithoutFeedback,
-  Text,
   Animated,
   Easing,
   TouchableOpacity,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 
 type Props = {
   size: number;
+  backgroundColor?: string;
   onPress: () => void;
+  borderColor?: string;
+  borderWidth?: number;
+  style?: StyleProp<ViewStyle>
 };
 
 class AnimatedButton extends React.Component<Props> {
@@ -41,15 +45,22 @@ class AnimatedButton extends React.Component<Props> {
   };
 
   render() {
-    const {size, onPress} = this.props;
+    const { size, style, onPress, backgroundColor, borderWidth, borderColor } = this.props;
     return (
       <View
-        style={{
-          width: size,
-          height: size,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+        style={
+          [{
+            width: size,
+            height: size,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: backgroundColor,
+            borderRadius: size,
+            borderWidth,
+            borderColor
+          },
+            style]
+        }>
         <Animated.View
           style={{
             position: 'absolute',
@@ -60,11 +71,12 @@ class AnimatedButton extends React.Component<Props> {
             backgroundColor: 'gray',
           }}></Animated.View>
         <TouchableOpacity
-        style={{flex:1, justifyContent:'center',alignItems:'center'}}
-            onPress={()=>{onPress()}}
+          style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}
+          onPress={() => { onPress() }}
           onPressIn={() => {
             this.handlePressIn();
           }}
+          activeOpacity={.9}
           onPressOut={() => {
             this.handlePressOut();
           }}>

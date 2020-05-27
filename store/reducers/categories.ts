@@ -1,7 +1,7 @@
-import {CategoriesActionTypes, CategoriesState} from '../types';
+import {CategoriesState, CategoriesActionTypes} from '../types';
 import {
   ADD_CATEGORY,
-  REMOVE_CATEGORY,
+  REMOVE_CATEGORIES,
   EDIT_CATEGORY,
 } from '../actions/actionTypes';
 
@@ -28,10 +28,10 @@ export default function categoriesReducer(
         ),
       };
     }
-    case REMOVE_CATEGORY: {
+    case REMOVE_CATEGORIES: {
       return {
         ...state,
-        categories: state.categories.filter(c => c.id !== action.payload),
+        categories: state.categories.filter(c => !action.payload.some(id=>c.id===id)),
       };
     }
     default:
